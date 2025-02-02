@@ -1,0 +1,43 @@
+@import 'mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+
+  @include orientation(portrait) {
+    flex: 1 0 100%;
+    height: 100%;
+  }
+}
+
+.countdown {
+  &-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+
+    @include orientation(portrait) {
+      flex: 1 0 50%;
+      justify-content: center;
+    }
+  }
+
+  &-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+
+    @include orientation(landscape) {
+      flex-direction: row;
+    }
+
+    @include orientation(portrait) {
+      flex-direction: column;
+      flex: 1 0 50%;
+      justify-content: flex-start;
+    }
+  }
+}

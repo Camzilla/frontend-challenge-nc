@@ -1,33 +1,83 @@
-# Description & requirements
+# Frontend Challenge
 
-Your objective in this assignment is to create a countdown app built using this boilerplate (+ any other tools of your choice) that follows the design specifications provided [in this Figma file](https://www.figma.com/file/UPEugUz5jM9IzIkWft2Y9m/NC-challenge). The app should work in portrait as well as in landscape mode while the text displayed on the screen should always fill the whole width of the screen.
+Hello! This repo is my take on the frontend challenge presented by Natural Cycles.
 
-In your app, it should be possible to define the end date and the name of the event taking place on that day. The countdown should always start from the current time and it should display the time remaining to your specified end date in the following format: Days, Hours(h), Minutes(m), Seconds(s) *(e.g., 3 days, 15 h, 20 m, 5 s)*. To make sure the text always covers the entire screen width, it should resize whenever necessary to achieve this objective.
+The goal of the challenge is to present a UI containing a title and a timer which are connected to
+two inputs. The text of both UI elements should adapt dynamically to the width of the page. The
+following logic requirements were extracted from the assignment:
 
-The purpose of the solution is to “fit” the input text into an element in one line (no line breaks, filling the whole width) using the maximum possible font-size.
+- The UI should work in portrait and landscape mode.
+- The text should always fit the whole viewport, on resize and new user input.
+- The values selected by the user should persist on page reload.
+- Should follow the design in the provided Figma link.
 
-Please make sure that your text fit solution is reusable and that the event name, as well as the specified end date, are persisted between page reloads.
+## Local setup
 
-**Once you feel ready to share your solution, please:**
+_Note: These instructions are provided with Windows in mind._
 
-- Commit the code to Github or your favorite VCS.
-- Write a simple README.md explaining how to set up the project (assuming it’s read by a developer who is experienced with all the used tools).
-- Include a URL to a deployed working Web page (use netlify.com or github.io or whatever simple hosting tool that works for you).
+1. Make sure you are on the compatible Node version.
+2. Then install the required packages with `npm i`.
 
-Please put the resulting project in a public github repository and provide a link to it. Please make it easy for us to test the result.
+Once that is done, you can start up the app with `npm run start`. You are ready to go! 🚀
+http://localhost:4200/
 
-## Optional goals
+## Suggestions for production readiness! ✨
 
-You’re free to complete this additional goal to get a higher score if you want!
+To be production-ready, I would recommend using a time library to assist with the countdown
+calculations. Date/times can be finicky, as would become apparent if launched to production as is;
+timezones, summer/winter time, and region could be problematic.
 
-1. Write suggestions of how this solution can be improved. Describe what the next steps would be in order for this app to be production ready. 
+---
 
-## Running the app
+Simple test scaffolding was added with Jest, but these should ideally be expanded into more robust
+coverage.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files. 
+---
 
-## Further help
+As this is a prototype, scope was limited to basic functionality and design. To be production-ready,
+a review with a designer would also be ideal to discuss matters such as:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+- Text size change animation
+- Initial form values
+- Placeholder text
+- Form validation (specifically for date)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+---
+
+Suggestion to update the wording from `to` to `until` to avoid possible disappointment.
+
+![NC meme](https://imgur.com/bvd1t6x.gif)
+
+## AI clause
+
+This assignment was done without the direct use of AI tools. However, after some deliberation and to
+stay up to date with available technologies, GitHub Copilot was asked as a last step to code review.
+The usage was intended for minor cleanups and to reduce overhead for any PR reviewer.
+
+Further use of AI should be discussed and decided by the team.
+
+### Adopted GitHub Copilot suggestions
+
+`ncx-countdown.component.ts`
+
+- Added return types to methods for better type safety.
+- Optimized the `startCountDown` method to avoid redundant calculations.
+
+  Before:
+
+  ```typescript
+  const timeDiffFuture = targetDate.getTime() - Date.now()
+  const timeDiffPast = targetDate.getTime() + Date.now()
+  const isFuture = targetDate.getTime() > Date.now()
+  ```
+
+`time-converter.service.ts`
+
+- Used more descriptive variable names.
+
+`dynamic-font-size.directive.ts`
+
+- Added type annotations for better type safety.
+
+For both `LocalStorageService` and `TimeConverterService` codepilot mentions error fallback which
+would be a good point to add to "production readiness".

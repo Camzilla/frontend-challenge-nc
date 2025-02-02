@@ -1,0 +1,83 @@
+@import 'colors', 'variables';
+
+:host {
+  width: 100%;
+  max-width: 278px;
+  margin: 20px 10px;
+}
+
+.control {
+  &-container {
+    position: relative;
+    width: 100%;
+
+    &--value {
+      input[type='date']::-webkit-datetime-edit {
+        color: $black !important;
+      }
+    }
+
+    input {
+      cursor: text;
+      background-color: transparent;
+      position: relative;
+      z-index: 1;
+      border: none;
+      width: 100%;
+      padding: 15px;
+
+      &[type='date']::-webkit-datetime-edit {
+        color: rgba($black, 0.5);
+      }
+      &[type='date']::-webkit-calendar-picker-indicator {
+        display: none;
+      }
+
+      &:active,
+      &:focus,
+      &:hover {
+        + .control-border .control-border__notch {
+          border-color: $fuchsia;
+        }
+      }
+    }
+  }
+
+  &-border {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    &__notch {
+      border-top: 1px solid $black;
+      border-bottom: 1px solid $black;
+      transition: $transition border-color;
+
+      &-prepend {
+        width: 12px;
+        border-left: 1px solid $black;
+        border-radius: $radius 0 0 $radius;
+      }
+      &-center {
+        border-top: none;
+        position: relative;
+
+        label {
+          position: relative;
+          top: -12px;
+          padding: 0 5px;
+        }
+      }
+      &-append {
+        flex: 1 0 auto;
+        width: 12px;
+        border-right: 1px solid $black;
+        border-radius: 0 $radius $radius 0;
+      }
+    }
+  }
+}

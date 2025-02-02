@@ -1,0 +1,18 @@
+<div class="countdown-container">
+  <h1 dynamicFontSize class="fuchsia-color">Time to {{ timerTitle$() }}</h1>
+  <h2 dynamicFontSize>{{ timerText$() }}</h2>
+</div>
+<form [formGroup]="countdownForm" class="countdown-form">
+  <ncx-form-control
+    [countdownControl]="titleFormControl"
+    [placeholder]="defaultTitle"
+    label="Title"
+  ></ncx-form-control>
+
+  <ncx-form-control
+    [countdownControl]="dateFormControl"
+    min="{{ currentDateTime | date: 'yyyy-MM-dd' }}"
+    label="Date"
+    type="date"
+  ></ncx-form-control>
+</form>

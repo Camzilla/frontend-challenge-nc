@@ -1,0 +1,81 @@
+@import 'reset', 'colors', 'mixins', 'variables';
+
+@font-face {
+  font-family: 'Open Sauce One';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('https://cdn.jsdelivr.net/fontsource/fonts/open-sauce-one@latest/latin-400-normal.ttf')
+    format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sauce One';
+  font-style: bold;
+  font-display: swap;
+  font-weight: 800;
+  src: url('https://cdn.jsdelivr.net/fontsource/fonts/open-sauce-one@latest/latin-800-normal.ttf')
+    format('truetype');
+}
+
+html {
+  font-family: 'Open Sauce One';
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $light-grey;
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.4rem;
+}
+
+input {
+  &::placeholder {
+    color: rgba($black, 0.5);
+  }
+}
+
+h1,
+h2,
+p {
+  font-weight: normal;
+  font-family: 'Open Sauce One';
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+
+.dynamic-font-size {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+
+  &__text {
+    display: inline-block;
+    white-space: nowrap;
+    animation: appear 1s normal forwards ease-in-out;
+
+    @include orientation(portrait) {
+      margin-bottom: 3vw;
+    }
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

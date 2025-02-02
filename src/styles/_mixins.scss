@@ -1,0 +1,18 @@
+$orientations: (
+  'portrait': (
+    orientation: portrait,
+  ),
+  'landscape': (
+    orientation: landscape,
+  ),
+);
+
+@mixin orientation($state) {
+  @if map-has-key($orientations, $state) {
+    @media #{inspect(map-get($orientations, $state))} {
+      @content;
+    }
+  } @else {
+    @warn "Couldn't find a orientation named `#{$state}`.";
+  }
+}

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
+import { NcxCountdownComponent } from './components/ncx-countdown/ncx-countdown.component'
 
 @Component({
   selector: 'app-root',
